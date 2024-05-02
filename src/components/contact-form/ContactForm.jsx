@@ -3,10 +3,9 @@ import css from "./ContactForm.module.css";
 import * as yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/contactsOps";
 
 const initialValues = {
   name: "",
@@ -33,7 +32,7 @@ const ContactForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, action) => {
-    const newContact = { ...values, id: uuidv4() };
+    const newContact = values;
     dispatch(addContact(newContact));
 
     action.resetForm();
